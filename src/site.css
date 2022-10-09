@@ -1,0 +1,374 @@
+﻿html {
+	background-color: #e2e2e2;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background-color: #DBDAD5;
+	font-size: .85em;
+	font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
+	margin: 0;
+	padding: 0;
+}
+
+a:link, a:visited,
+a:active, a:hover {
+	color: #333;
+	outline: none;
+	padding-left: 3px;
+	padding-right: 3px;
+	text-decoration: underline;
+}
+
+a:hover {
+	background-color: #c7d1d6;
+}
+
+header, footer, hgroup,
+nav, section {
+	display: block;
+}
+
+input[type="text"] {
+    border: 1px solid #e2e2e2;
+    color: #333;
+    font-size: 1.2em;
+    margin: 5px 0 6px 0;
+    padding: 5px;
+    width: 300px;
+}
+
+input[type="text"]:focus {
+    border: 1px solid #7ac0da;
+}
+
+.float-left {
+	float: left;
+}
+
+.float-right {
+	float: right;
+}
+
+.clear {
+    clear: both;
+    padding-top:10px;
+}
+
+.align-center {
+    text-align: center;
+}
+
+.highlight {
+	background-color: #a6dbed;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+.clear-fix:after {
+	content: ".";
+	clear: both;
+	display: block;
+	height: 0;
+	visibility: hidden;
+}
+
+h1, h2, h3,
+h4, h5, h6 {
+	color: #000;
+	margin-bottom: 0;
+	padding-bottom: 0;
+}
+
+h1 {
+	font-size: 2em;
+}
+
+h2 {
+	font-size: 1.75em;
+}
+
+h3 {
+	font-size: 1.2em;
+}
+
+h4 {
+	font-size: 1.1em;
+}
+
+h5, h6 {
+	font-size: 1em;
+}
+
+
+/* main layout
+----------------------------------------------------------*/
+.content-wrapper {
+	margin: 0 auto;
+	max-width: 980px;
+}
+
+#body {
+	background-color: #ccc;
+	display: block;
+	margin-top: 160px;
+	position: absolute;
+	left: 50%;
+	margin-left: -490px;
+	width: 980px;
+	z-index: -1;
+	height: calc(100% - 160px);
+}
+
+.main-content {
+	padding-left: 10px;
+	margin-top: 100px;
+}
+
+#taskTable {
+	background-color: #999999;
+	color: #E6E6E6;
+	width: 480px;
+	padding-bottom: 20px;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+#taskTable td {
+	height: 40px;
+	border-bottom: solid 1px;
+}
+
+#taskTable td:first-child {
+	cursor: pointer;
+}
+
+/* site title
+----------------------------------------------------------*/
+.site-title {
+	color: #c8c8c8;
+	font-family: Rockwell, Consolas, "Courier New", Courier, monospace;
+	font-size: 2.3em;
+	margin: -160px 0;
+	height: 257px;
+}
+
+#pagetitleImage {
+	left: 50%;
+	position: absolute;
+	margin-left: -490px;
+}
+
+.site-title img {
+	width: 980px;
+	height: 257px;
+}
+
+.site-title a, .site-title a:hover, .site-title a:active {
+	background: none;
+	color: #c8c8c8;
+	outline: none;
+	text-decoration: none;
+}
+
+.GoBacktoIndex {
+	background: url('../images/BackArrow.png') no-repeat top left;
+	display: inline-block;
+	width: 28px;
+	height: 22px;
+}
+
+/* page elements
+----------------------------------------------------------*/
+
+/* page titles */
+hgroup.title {
+	margin-bottom: 10px;
+}
+
+hgroup.title h1, hgroup.title h2 {
+	display: inline;
+}
+
+hgroup.title h2 {
+	font-weight: normal;
+	margin-left: 3px;
+}
+
+/* features */
+section.feature {
+	width: 300px;
+	float: left;
+	padding: 10px;
+}
+
+/* content */
+article {
+	float: left;
+	width: 70%;
+}
+
+aside {
+	float: right;
+	width: 25%;
+}
+
+aside ul {
+	list-style: none;
+	padding: 0;
+}
+
+.label {
+	font-weight: 700;
+}
+
+/* login page */
+#loginForm {
+	border-right: solid 2px #c8c8c8;
+	float: left;
+	width: 45%;
+}
+
+#loginForm .validation-error {
+	display: block;
+	margin-left: 15px;
+}
+
+#socialLoginForm {
+	margin-left: 40px;
+	float: left;
+	width: 50%;
+}
+
+/* contact */
+.contact h3 {
+	font-size: 1.2em;
+}
+
+.contact p {
+	margin: 5px 0 0 10px;
+}
+
+.contact iframe {
+	border: 1px solid #333;
+	margin: 5px 0 0 10px;
+}
+
+/* forms */
+fieldset {
+	border: none;
+	margin: 0;
+	padding: 0;
+}
+
+fieldset legend {
+	display: none;
+}
+
+fieldset ol {
+	padding: 0;
+	list-style: none;
+}
+
+fieldset ol li {
+	padding-bottom: 5px;
+}
+
+fieldset label {
+	display: block;
+	font-size: 1.2em;
+	font-weight: 600;
+}
+
+fieldset label.checkbox {
+	display: inline;
+}
+
+fieldset input[type="text"],
+fieldset input[type="password"] {
+	border: 1px solid #e2e2e2;
+	color: #333;
+	font-size: 1.2em;
+	margin: 5px 0 6px 0;
+	padding: 5px;
+	width: 300px;
+}
+
+fieldset input[type="text"]:focus,
+fieldset input[type="password"]:focus {
+	border: 1px solid #7ac0da;
+}
+
+fieldset input[type="submit"] {
+	background-color: #d3dce0;
+	border: 1px solid #787878;
+	cursor: pointer;
+	font-size: 1.2em;
+	font-weight: 600;
+	padding: 7px;
+}
+
+.display-field {
+	float: left !important;
+	font-size: 20px;
+	margin-right: 15px;
+}
+
+.display-label {
+	float: left !important;
+	font-size: 20px;
+	font-weight: bold;
+	margin-right: 15px;
+}
+
+.moreDetails, .moreDetails:hover {
+	background: url('../images/MoreDetailsImage.png');
+	float: right !important;
+	margin-top: 60px;
+	width: 93px;
+	height: 90px;
+}
+
+.assignment-padding {
+    padding-left:10px;
+}
+
+.whirl {
+	position: absolute;
+	left: 50%;
+	margin-left: -300px;
+    z-index: -1;
+	height: 500px;
+}
+
+.backButton {
+	background: url('../images/BackArrow.png');
+	width: 28px;
+	height: 22px;
+	background-repeat: no-repeat;
+	margin-top: 5px;
+	display: block;
+}
+
+#btnCreateAgent {
+    margin-top: 30px;
+}
+
+.separatorDiv {
+	border-bottom: solid;
+	border-width: 1px;
+	border-color: black;
+	width: 480px;
+	margin-bottom: 10px;
+	margin-top: 5px;
+}
+
+.flex-row {
+	display: flex;
+	flex-direction: row;
+}
+
+.width-50 {
+	width: 50%;
+}
