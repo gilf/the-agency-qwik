@@ -12,22 +12,30 @@ export default component$(({ agent }: IProps) => {
   const store = useStore({
     ...agent
   });
+  const validationErrorStore = useStore({
+    error: ''
+  });
 
   const onChange$ = $(async (label: string, value: string) => {
     store[label as txtId] = value;
   });
 
   const handleSave$ = $(async () => {
-    const data = new URLSearchParams();
-    Object.keys(store).forEach((param) => {
+    if (!store.firstName || !store.lastName) {
+      validationErrorStore.error = 'Please fill first name and last name!';
+    } else {
+      validationErrorStore.error = '';
+      const data = new URLSearchParams();
+      Object.keys(store).forEach((param) => {
         data.set(param, store[param as txtId]);
-    });
-    fetch(`/edit/${store.agentID}`, {
-      method: 'PUT',
-      body: data
-    }).then(() => {
-      location.href = `/details/${store.agentID}`;
-    });
+      });
+      fetch(`/edit/${store.agentID}`, {
+        method: 'PUT',
+        body: data
+      }).then(() => {
+        location.href = `/details/${store.agentID}`;
+      });
+    }
   });
 
   return (
@@ -39,6 +47,7 @@ export default component$(({ agent }: IProps) => {
         <fieldset>
           <legend>Agent Details</legend>
           <div>
+            <div className="validation-error">{validationErrorStore.error}</div>
             <div>
               <form>
                 <FieldControl id="firstName" label="First Name: " onChange={onChange$} value={store.firstName} />

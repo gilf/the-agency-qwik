@@ -8,8 +8,10 @@ export default component$(() => {
       firstName: '',
       lastName: '',
       codeName: '',
-      description: '',
-      imagePath: ''
+      description: ''
+  });
+  const validationErrorStore = useStore({
+    error: ''
   });
   const imgInput = useRef<HTMLInputElement>();
 
@@ -32,19 +34,24 @@ export default component$(() => {
       }
     };
 
-    handleImageFile((file: string) => {
-      const data = new URLSearchParams();
-      Object.keys(store).forEach((param) => {
-        data.set(param, store[param as txtId]);
+    if (!store.firstName || !store.lastName) {
+      validationErrorStore.error = 'Please fill first name and last name!';
+    } else {
+      validationErrorStore.error = '';
+      handleImageFile((file: string) => {
+        const data = new URLSearchParams();
+        Object.keys(store).forEach((param) => {
+          data.set(param, store[param as txtId]);
+        });
+        data.set('imagePath', file);
+        fetch('/create', {
+          method: 'POST',
+          body: data
+        }).then(() => {
+          location.href = '/';
+        });
       });
-      data.set('imagePath', file);
-      fetch('/create', {
-        method: 'POST',
-        body: data
-      }).then(() => {
-        location.href = '/';
-      });
-    });
+    }
   });
 
   const onChange$ = $(async (label: string, value: string) => {
@@ -60,6 +67,7 @@ export default component$(() => {
         <fieldset>
           <legend>Agent Details</legend>
           <div>
+            <div className="validation-error">{validationErrorStore.error}</div>
             <div>
               <form>
                 <FieldControl id="firstName" label="First Name: " onChange={onChange$} />

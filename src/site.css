@@ -372,3 +372,7 @@ fieldset input[type="submit"] {
 .width-50 {
 	width: 50%;
 }
+
+.validation-error {
+	color: red;
+}
