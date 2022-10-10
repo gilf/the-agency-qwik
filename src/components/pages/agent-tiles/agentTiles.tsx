@@ -1,6 +1,6 @@
 import { component$ } from "@builder.io/qwik";
 import { Agent } from "~/models";
-import AgentTile from "~/components/agent-tile/agentTile";
+import AgentTile from "./components/agent-tile/agentTile";
 
 interface IProps {
   agents: Array<Agent>;
