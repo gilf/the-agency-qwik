@@ -16,7 +16,7 @@ export default component$(({ id, label, value = '', onChange }: IProps) => {
     const input = event.target as HTMLInputElement;
     store.value = input.value;
     if (onChange) {
-      onChange(id, input.value);
+      await onChange(id, input.value);
     }
   });
 
