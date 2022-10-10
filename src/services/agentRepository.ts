@@ -14,7 +14,7 @@ function generateInitialData() {
     agents = [
         { agentID: '1', codeName: '007', firstName: 'James', lastName: 'Bond', imagePath: '/images/JamesBondImage.png', description: 'Killer'},
         { agentID: '2', codeName: 'Q', firstName: 'Desmond', lastName: 'Llewelyn', imagePath: '/images/LDesmond.png', description: 'Master of Gadgets'},
-        { agentID: '3', codeName: 'Ive', firstName: 'Vesper', lastName: 'Lynd', imagePath: '/images/VesperLynd.png', description: 'Seducer'},
+        { agentID: '3', codeName: 'Ive', firstName: 'Vesper', lastName: 'Lynd', imagePath: '/images/VesperLynd.png', description: 'Double agent'},
         { agentID: '4', codeName: 'King', firstName: 'Chuck', lastName: 'Noris', imagePath: '/images/ChuckNoris.png', description: 'Facts Collector'}
     ];
 }
