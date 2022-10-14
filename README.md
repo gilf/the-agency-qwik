@@ -1,4 +1,8 @@
-# Qwik App ⚡️
+# The Agency is a Qwik App ⚡️
+
+The Agency is a small app that shows how to build a Qwik/QwikCity app
+with Web API to handle CRUD operations. 
+For more information about Qwik -
 
 - [Qwik Docs](https://qwik.builder.io/)
 - [Discord](https://qwik.builder.io/chat)
@@ -17,17 +21,34 @@ Inside of you project, you'll see the following directories and files:
 
 ```
 ├── public/
+│   └── images
 │   └── ...
 └── src/
     ├── components/
     │   └── ...
+    └── models/
+        └── ...
     └── routes/
+        └── ...
+    └── services/
+        └── ...
+    └── types/
+        └── ...
+    └── utils/
         └── ...
 ```
 
 - `src/routes`: Provides the directory based routing, which can include a hierarchy of `layout.tsx` layout files, and `index.tsx` files as the page. Additionally, `index.ts` files are endpoints. Please see the [routing docs](https://qwik.builder.io/qwikcity/routing/overview/) for more info.
 
-- `src/components`: Recommended directory for components.
+- `src/components`: Recommended directory for components. The components folder is divided into pages and shared folders. The pages folder includes all the different app page implementation. The shared folder includes shared components that can be reused by all the pages components.
+
+- `src/models`: The different models that are used in the app: Agent and Task.
+
+- `src/services`: Provides services that are used in the app. The implementation includes an agents repository and a task repository to handle all the work of CRUD operations against a data source (which is a simple in memory data source).
+
+- `src/types`: Types that are used in the app which aren't related to the models.
+
+- `src/utils`: Utility functions.
 
 - `public`: Any static assets, like images, can be placed in the public directory. Please see the [Vite public directory](https://vitejs.dev/guide/assets.html#the-public-directory) for more info.
 
