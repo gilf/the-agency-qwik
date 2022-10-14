@@ -16,25 +16,27 @@ export default component$(({ agentID, tasks }: IProps) => {
     track(store, 'tasks');
   });
 
+  const handleKeyPress$ = $(async (evt: KeyboardEvent) => {
+    if (evt.which !== 13 || !evt.target?.value) {
+      return;
+    }
+    const data = new URLSearchParams();
+    data.set('description', evt.target?.value);
+    evt.target.value = '';
+    fetch(`/task/${agentID}`, {
+      method: 'POST',
+      body: data
+    }).then(async (res) => {
+      const task = await res.json();
+      store.tasks = [...store.tasks, task];
+    });
+  });
+
   return (
     <table id="taskTable">
       <tr>
         <td colSpan={2}>
-          <input id="txtNewTask" type="text" autoFocus={true} onKeyPress$={(evt: KeyboardEvent) => {
-            if (evt.which !== 13 || !evt.target?.value) {
-              return;
-            }
-            const data = new URLSearchParams();
-            data.set('description', evt.target?.value);
-            evt.target.value = '';
-            fetch(`/task/${agentID}`, {
-              method: 'POST',
-              body: data
-            }).then(async (res) => {
-              const task = await res.json();
-              store.tasks = [...store.tasks, task];
-            });
-        }} /></td>
+          <input id="txtNewTask" type="text" autoFocus={true} onKeyPress$={handleKeyPress$} /></td>
       </tr>
       {store.tasks.map((task) => <TaskRow key={task.taskID} task={mutable(task)} onToggle$={$(() => {
         const data = new URLSearchParams();

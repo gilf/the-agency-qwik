@@ -3,6 +3,7 @@ import { DocumentHead, RequestHandler, useEndpoint } from "@builder.io/qwik-city
 import { Agent, Task } from "~/models";
 import AgentDetails from "~/components/pages/agent-details/agentDetails";
 import { agentRepository, taskRepository } from "~/services";
+import { deserializeData } from "~/utils/utils";
 
 interface ResponseData {
   agent: Agent;
@@ -17,12 +18,7 @@ export const onGet: RequestHandler<ResponseData> = async ({ params }) => {
 };
 
 export const onPut: RequestHandler = async ({ request }) => {
-  const formData = await request.formData();
-  const agent: any = {};
-  formData.forEach((value, key) => {
-    agent[key] = value;
-  });
-
+  const agent = await deserializeData<Agent>(request);
   return agentRepository.update(agent);
 };
 

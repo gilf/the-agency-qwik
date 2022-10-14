@@ -2,6 +2,7 @@ import { component$, useRef, useStore, $ } from "@builder.io/qwik";
 import BackButton from "~/components/shared/back-button/backButton";
 import FieldControl from "~/components/shared/field-control/FieldControl";
 import { txtId } from "~/types";
+import { serializeData } from '~/utils/utils';
 
 export default component$(() => {
   const store = useStore( {
@@ -39,10 +40,7 @@ export default component$(() => {
     } else {
       validationErrorStore.error = '';
       handleImageFile((file: string) => {
-        const data = new URLSearchParams();
-        Object.keys(store).forEach((param) => {
-          data.set(param, store[param as txtId]);
-        });
+        const data = serializeData(store);
         data.set('imagePath', file);
         fetch('/create', {
           method: 'POST',

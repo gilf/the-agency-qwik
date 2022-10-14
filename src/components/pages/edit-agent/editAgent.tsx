@@ -3,6 +3,7 @@ import { Agent } from "~/models";
 import BackButton from "~/components/shared/back-button/backButton";
 import FieldControl from "~/components/shared/field-control/FieldControl";
 import { txtId } from "~/types";
+import { serializeData } from "~/utils/utils";
 
 interface IProps {
   agent: Agent;
@@ -25,10 +26,7 @@ export default component$(({ agent }: IProps) => {
       validationErrorStore.error = 'Please fill first name and last name!';
     } else {
       validationErrorStore.error = '';
-      const data = new URLSearchParams();
-      Object.keys(store).forEach((param) => {
-        data.set(param, store[param as txtId]);
-      });
+      const data = serializeData(store);
       fetch(`/edit/${store.agentID}`, {
         method: 'PUT',
         body: data

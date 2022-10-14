@@ -3,18 +3,14 @@ import { DocumentHead, RequestHandler, useEndpoint } from "@builder.io/qwik-city
 import EditAgent from "~/components/pages/edit-agent/editAgent";
 import { Agent } from "~/models";
 import { agentRepository } from "~/services";
+import { deserializeData } from "~/utils/utils";
 
 export const onGet: RequestHandler<Agent> = async ({ params }) => {
   return agentRepository.get(params.id);
 };
 
 export const onPut: RequestHandler = async ({ request }) => {
-  const formData = await request.formData();
-  const agent: any = {};
-  formData.forEach((value, key) => {
-    agent[key] = value;
-  });
-
+  const agent = await deserializeData<Agent>(request);
   return agentRepository.update(agent);
 };
 
