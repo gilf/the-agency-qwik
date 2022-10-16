@@ -1,4 +1,4 @@
-import { $, component$, useStore } from "@builder.io/qwik";
+import { $, component$, mutable, useStore } from "@builder.io/qwik";
 import { Agent } from "~/models";
 import BackButton from "~/components/shared/back-button/backButton";
 import FieldControl from "~/components/shared/field-control/FieldControl";
@@ -48,10 +48,10 @@ export default component$(({ agent }: IProps) => {
             <div className="validation-error">{validationErrorStore.error}</div>
             <div>
               <form>
-                <FieldControl id="firstName" label="First Name: " onChange={onChange$} value={store.firstName} />
-                <FieldControl id="lastName" label="Last Name: " onChange={onChange$} value={store.lastName} />
-                <FieldControl id="codeName" label="Code Name: " onChange={onChange$} value={store.codeName}/>
-                <FieldControl id="description" label="Description: " onChange={onChange$} value={store.description} />
+                <FieldControl id="firstName" label="First Name: " onChange={onChange$} value={mutable(store.firstName)} />
+                <FieldControl id="lastName" label="Last Name: " onChange={onChange$} value={mutable(store.lastName)} />
+                <FieldControl id="codeName" label="Code Name: " onChange={onChange$} value={mutable(store.codeName)}/>
+                <FieldControl id="description" label="Description: " onChange={onChange$} value={mutable(store.description)} />
               </form>
             </div>
           </div>
