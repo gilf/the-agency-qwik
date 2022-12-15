@@ -3,7 +3,6 @@ import { Agent } from "~/models";
 import BackButton from "~/components/shared/back-button/backButton";
 import FieldControl from "~/components/shared/field-control/FieldControl";
 import { txtId } from "~/types";
-import { serializeData } from "~/utils/utils";
 
 interface IProps {
   agent: Agent;
