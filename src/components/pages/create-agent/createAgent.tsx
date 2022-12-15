@@ -1,27 +1,25 @@
-import { component$, useRef, useStore, $ } from "@builder.io/qwik";
+import { component$, useStore, $, useSignal } from "@builder.io/qwik";
 import BackButton from "~/components/shared/back-button/backButton";
 import FieldControl from "~/components/shared/field-control/FieldControl";
 import { txtId } from "~/types";
-import { serializeData } from '~/utils/utils';
 
 export default component$(() => {
   const store = useStore( {
       firstName: '',
       lastName: '',
       codeName: '',
-      description: ''
+      description: '',
+      imagePath: ''
   });
-  const validationErrorStore = useStore({
-    error: ''
-  });
-  const imgInput = useRef<HTMLInputElement>();
+  const validationErrorStore = useSignal('');
+  const imgInput = useSignal<HTMLInputElement>();
 
   const handleSave$ = $(async () => {
     const handleImageFile = (callback: Function) => {
-      if (!imgInput.current || !imgInput.current.files ) {
+      if (!imgInput.value || !imgInput.value.files ) {
         return;
       }
-      const file = imgInput.current.files[0];
+      const file = imgInput.value.files[0];
       const reader  = new FileReader();
 
       if (file) {
@@ -36,15 +34,15 @@ export default component$(() => {
     };
 
     if (!store.firstName || !store.lastName) {
-      validationErrorStore.error = 'Please fill first name and last name!';
+      validationErrorStore.value = 'Please fill first name and last name!';
     } else {
-      validationErrorStore.error = '';
+      validationErrorStore.value = '';
       handleImageFile((file: string) => {
-        const data = serializeData(store);
-        data.set('imagePath', file);
-        fetch('/create', {
+        store.imagePath = file;
+        console.log(JSON.stringify(store));
+        fetch('/createAgent', {
           method: 'POST',
-          body: data
+          body: JSON.stringify(store)
         }).then(() => {
           location.href = '/';
         });
@@ -58,29 +56,29 @@ export default component$(() => {
 
   return (
     <div>
-      <img className="whirl" src="/images/whirl.png" />
-      <div className="float-left">
+      <img class="whirl" src="/images/whirl.png" />
+      <div class="float-left">
         <h2>Create Agent</h2>
-        <div className="separatorDiv" />
+        <div class="separatorDiv" />
         <fieldset>
           <legend>Agent Details</legend>
           <div>
-            <div className="validation-error">{validationErrorStore.error}</div>
+            <div class="validation-error">{validationErrorStore.value}</div>
             <div>
               <form>
                 <FieldControl id="firstName" label="First Name: " onChange={onChange$} />
                 <FieldControl id="lastName" label="Last Name: " onChange={onChange$} />
                 <FieldControl id="codeName" label="Code Name: " onChange={onChange$} />
                 <FieldControl id="description" label="Description: " onChange={onChange$} />
-                <label htmlFor="txtImage">Image Path: </label>
-                <input ref={imgInput} id="txtImage" type="file" value={store.imagePath} />
+                <label for="txtImage">Image Path: </label>
+                <input ref={imgInput} id="txtImage" type="file" />
               </form>
             </div>
           </div>
         </fieldset>
       </div>
-      <div className="clear align-center">
-        <input id="saveEditButton" type="button" value="Save" className="default" onClick$={handleSave$} />
+      <div class="clear align-center">
+        <input id="saveEditButton" type="button" value="Save" class="default" onClick$={handleSave$} />
         <BackButton backUrl={`/`} />
       </div>
     </div>

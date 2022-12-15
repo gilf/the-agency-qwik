@@ -61,7 +61,7 @@ class AgentsRepository {
 
     delete = (agentID: string) => {
         const index = this.agents.findIndex((agent) => {
-            return agent.agentID === agentID;
+            return agent.agentID == agentID;
         });
 
         this.agents = [

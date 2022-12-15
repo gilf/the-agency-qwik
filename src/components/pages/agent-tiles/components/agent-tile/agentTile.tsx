@@ -8,22 +8,22 @@ interface IProps {
 export default component$(({ agent } : IProps) => {
   return (
     <div id="tilecontainer">
-      <div className="tile double bg-color-gray">
-        <div className="tile-content">
-          <div className="image">
-            <img src={agent.imagePath} className="place-left" id="agentImage" alt="Agent Image" />
+      <div class="tile double bg-color-gray">
+        <div class="tile-content">
+          <div class="image">
+            <img src={agent.imagePath} class="place-left" id="agentImage" alt="Agent Image" />
           </div>
           <a href={`/details/${agent.agentID}`} class="moreDetails" />
-          <div className="agentDetails">
-            <span className="agentDetailsHeaders">Name:</span>
+          <div class="agentDetails">
+            <span class="agentDetailsHeaders">Name:</span>
             {`${agent.firstName} ${agent.lastName}`}
           </div>
-          <div className="agentDetails">
-            <span className="agentDetailsHeaders">Code Name:</span>
+          <div class="agentDetails">
+            <span class="agentDetailsHeaders">Code Name:</span>
             {agent.codeName}
           </div>
-          <div className="agentDetails">
-            <span className="agentDetailsHeaders">Description:</span>
+          <div class="agentDetails">
+            <span class="agentDetailsHeaders">Description:</span>
             {agent.description}
           </div>
         </div>

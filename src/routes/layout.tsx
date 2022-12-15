@@ -7,7 +7,7 @@ export default component$(() => {
       <main>
         <Header />
         <div id="body">
-          <section id="main" className="content-wrapper main-content clear-fix">
+          <section id="main" class="content-wrapper main-content clear-fix">
             <Slot />
           </section>
         </div>

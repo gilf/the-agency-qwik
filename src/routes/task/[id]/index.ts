@@ -17,7 +17,7 @@ export const onPut: RequestHandler = async ({ params, request }) => {
   const formData = await request.formData();
   const task: Task = {
     taskID: formData.get('taskID') as string,
-    isComplete: formData.get('isComplete') === "true" ? true : false,
+    isComplete: formData.get('isComplete') === "true",
     description: formData.get('description') as string
   };
 

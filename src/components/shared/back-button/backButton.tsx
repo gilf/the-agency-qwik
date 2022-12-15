@@ -6,7 +6,7 @@ interface IProps {
 
 export default component$(({ backUrl }: IProps) => {
   return (
-    <input id="btnBack" type="button" value="Back" className="default" onClick$={() => {
+    <input id="btnBack" type="button" value="Back" class="default" onClick$={() => {
       location.href = backUrl;
     }} />
   );

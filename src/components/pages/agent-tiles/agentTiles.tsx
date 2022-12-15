@@ -9,7 +9,7 @@ interface IProps {
 export default component$(({ agents }: IProps) => {
   return (
     <>
-      {agents.map((agent) => <AgentTile agent={agent} />)}
+      {agents.map((agent) => <AgentTile agent={agent} key={agent.agentID} />)}
     </>
   );
 });

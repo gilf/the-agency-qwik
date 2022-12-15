@@ -1,4 +1,4 @@
-import { $, component$, useStore } from "@builder.io/qwik";
+import { component$, useStore } from "@builder.io/qwik";
 import { Agent, Task } from "~/models";
 import TaskTable from "~/components/pages/agent-details/components/task-table/taskTable";
 import BackButton from "~/components/shared/back-button/backButton";
@@ -15,19 +15,19 @@ export default component$(({ agent, tasks }: IProps) => {
 
   return (
     <div>
-      <img className="whirl" src="/images/whirl.png" />
-      <div className="flex-row">
+      <img class="whirl" src="/images/whirl.png" />
+      <div class="flex-row">
         <div>
           <h2>Agent Details</h2>
-          <div className="separatorDiv" />
+          <div class="separatorDiv" />
           <fieldset>
             <legend>Agent</legend>
-            <div className="flex-row">
+            <div class="flex-row">
               <div style={{ width: '35%'}}>
                 <img src={agent.imagePath} alt="Agent Image" id="agentImage" />
               </div>
-              <div className="flex-row" style={{ width: '65%', fontSize: '20px'}}>
-                <div className="width-50">
+              <div class="flex-row" style={{ width: '65%', fontSize: '20px'}}>
+                <div class="width-50">
                   <div style={{ fontWeight: 'bold' }}>
                     First Name: <br />
                     Last Name: <br />
@@ -35,7 +35,7 @@ export default component$(({ agent, tasks }: IProps) => {
                     Description:
                   </div>
                 </div>
-                <div className="width-50">
+                <div class="width-50">
                   <div id="agentDetails">
                     {store.firstName}<br />
                     {store.lastName}<br />
@@ -47,19 +47,20 @@ export default component$(({ agent, tasks }: IProps) => {
             </div>
           </fieldset>
         </div>
-        <div className="assignment-padding">
+        <div class="assignment-padding">
           <h2>Tasks</h2>
-          <div className="separatorDiv" />
+          <div class="separatorDiv" />
           <TaskTable agentID={store.agentID} tasks={tasks} />
         </div>
       </div>
-      <div className="clear align-center">
-        <input id="btnEditAgent" type="button" value="Edit" className="default" onClick$={() => location.href = `/edit/${agent.agentID}`} />
-        <input id="btnDeleteAgent" type="button" value="Delete" className="default" onClick$={() => {
+      <div class="clear align-center">
+        <input id="btnEditAgent" type="button" value="Edit" class="default" onClick$={() => location.href = `/edit/${agent.agentID}`} />
+        <input id="btnDeleteAgent" type="button" value="Delete" class="default" onClick$={() => {
           fetch(`/details/${store.agentID}`, {
             method: "DELETE"
+          }).then(() => {
+            location.href = "/";
           });
-          location.href = "/";
         }} />
         <BackButton backUrl={`/`} />
       </div>

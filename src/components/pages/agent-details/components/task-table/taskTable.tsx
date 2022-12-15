@@ -1,4 +1,4 @@
-import { $, component$, mutable, useStore, useWatch$ } from "@builder.io/qwik";
+import { $, component$, QwikKeyboardEvent, useStore, useWatch$ } from "@builder.io/qwik";
 import TaskRow from "~/components/pages/agent-details/components/task-row/taskRow";
 import { Task } from "~/models";
 
@@ -16,7 +16,7 @@ export default component$(({ agentID, tasks }: IProps) => {
     track(store, 'tasks');
   });
 
-  const handleKeyPress$ = $(async (evt: KeyboardEvent) => {
+  const handleKeyPress$ = $(async (evt: QwikKeyboardEvent) => {
     if (evt.which !== 13 || !evt.target?.value) {
       return;
     }
@@ -38,7 +38,7 @@ export default component$(({ agentID, tasks }: IProps) => {
         <td colSpan={2}>
           <input id="txtNewTask" type="text" autoFocus={true} onKeyPress$={handleKeyPress$} /></td>
       </tr>
-      {store.tasks.map((task) => <TaskRow key={task.taskID} task={mutable(task)} onToggle$={$(() => {
+      {store.tasks.map((task) => <TaskRow key={task.taskID} task={task} onToggle$={$(() => {
         const data = new URLSearchParams();
         data.set('taskID', task.taskID);
         data.set('description', task.description);

@@ -9,10 +9,14 @@ export const serializeData = (store: any) => {
 }
 
 export async function deserializeData<T>(request: RequestContext) : Promise<T> {
-  const formData = await request.formData();
+  const formData = await request.json();
   const result: T | any = {};
-  formData.forEach((value, key) => {
-    result[key] = value;
+  Object.keys(formData).forEach((key) => {
+    if (key.indexOf('id') >= 0) {
+      result[key] = parseInt(formData[key]);
+    } else {
+      result[key] = formData[key];
+    }
   });
   return result;
 }
